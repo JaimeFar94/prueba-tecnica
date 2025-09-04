@@ -67,9 +67,9 @@ class companieController extends Controller
 
     // Buscar una empresa
 
-    public function show($id)
+    public function show($nit)
     {
-        $companie = Companie::find($id);
+        $companie = Companie::find($nit);
 
         if (!$companie) {
             $data = [
@@ -90,9 +90,9 @@ class companieController extends Controller
 
     //Eliminar una empresa
 
-    public function destroy($id)
+    public function destroy($nit)
     {
-        $companie = Companie::find($id);
+        $companie = Companie::find($nit);
 
         if (!$companie) {
             $data = [
@@ -123,9 +123,9 @@ class companieController extends Controller
     }
 
     //Actualizar información
-    public function update(Request $request, $id)
+    public function update(Request $request, $nit)
     {
-        $companie = Companie::find($id);
+        $companie = Companie::find($nit);
 
         if (!$companie) {
             return response()->json([
@@ -135,7 +135,7 @@ class companieController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'nit' => 'required|unique:compani,nit,' . $id,
+            'nit' => 'required|unique:compani,nit,' . $nit,
             'nombre' => 'required|string|max:255',
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|max:20',
@@ -169,9 +169,9 @@ class companieController extends Controller
 
 
     //actualizar una parte de la información
-    public function updatePartial(Request $request, $id)
+    public function updatePartial(Request $request, $nit)
     {
-        $companie = Companie::find($id);
+        $companie = Companie::find($nit);
 
         if (!$companie) {
             $data = [
@@ -182,7 +182,7 @@ class companieController extends Controller
             return response()->json($data, 404);
         }
         $validator = Validator::make($request->all(), [
-            'nit' => 'sometimes|unique:compani,nit,' . $id,
+            'nit' => 'sometimes|unique:compani,nit,' . $nit,
             'nombre' => 'sometimes|string|max:255',
             'direccion' => 'sometimes|string|max:255',
             'telefono' => 'sometimes|string|max:20',
