@@ -69,7 +69,7 @@ class companieController extends Controller
 
     public function show($nit)
     {
-        $companie = Companie::find($nit);
+        $companie = Companie::where('nit', $nit)->first();
 
         if (!$companie) {
             $data = [
@@ -92,7 +92,7 @@ class companieController extends Controller
 
     public function destroy($nit)
     {
-        $companie = Companie::find($nit);
+        $companie = Companie::where('nit', $nit)->first();
 
         if (!$companie) {
             $data = [
@@ -125,7 +125,8 @@ class companieController extends Controller
     //Actualizar información
     public function update(Request $request, $nit)
     {
-        $companie = Companie::find($nit);
+        $companie = Companie::where('nit', $nit)->first();
+
 
         if (!$companie) {
             return response()->json([
@@ -171,7 +172,8 @@ class companieController extends Controller
     //actualizar una parte de la información
     public function updatePartial(Request $request, $nit)
     {
-        $companie = Companie::find($nit);
+        $companie = Companie::where('nit', $nit)->first();
+
 
         if (!$companie) {
             $data = [
